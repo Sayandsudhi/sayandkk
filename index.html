@@ -5,19 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sayand</title>
     <link rel="icon" type="image/png" href="sayand.jpg">
-
-   
-<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <section>
-      <div class="container">
-        <div class="row"></div>
-      </div>
-    </section>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .main-body {
+            text-align: center;
+            padding-top: 50px; /* Reduced from 150px to 50px */
+        }
+        .cursor {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .contactform {
+            background-color: #f8f9fa;
+        }
+        @media (max-width: 768px) {
+            .navbar-nav {
+                text-align: center;
+            }
+            .about-section img {
+                width: 100%;
+            }
+        }
+
+        /* Stylish Navbar */
+        .stylish-navbar {
+            background: #cccccc; 
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+            padding: 10px 20px;
+            margin: 10px;
+            border: 1px solid #e0e0e0; 
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333; 
+        }
+
+        .navbar-nav .nav-link {
+            color: #333; 
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #007bff;
+            transform: scale(1.3);
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23333' viewBox='0 0 30 30'%3E%3Cpath d='M4 7h22M4 15h22M4 23h22' stroke='%23333' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+        }
+
+        .text-muted {
+            font-family: Georgia, serif;
+        }
+    </style>
+</head>
+<body>
     <header class="bg-transparent" style="position: fixed; width: 100%; z-index: 1;">
         <nav class="navbar navbar-expand-lg stylish-navbar">
             <div class="container-fluid">
@@ -31,38 +100,71 @@
                             <a class="nav-link fs-5" href="#">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link fs-5" href="#about-section">About-me</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link fs-5" href="#skills">Skills</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-5" href="#form">Experience</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link fs-5" href="#">Contact</a>
+                            <a class="nav-link fs-5" href="#contact-info">Contact</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-    </div>
-       
     </header>
-    
-    <section>
-        <div class="container py-5" >
+
+    <section class="main-body d-flex flex-column justify-content-center align-items-center">
+        <h3 class="fw-bold">HEYY..</h3><br>
+        <h1 class="fw-bold">I'm SAYAND KK</h1>
+        <h3 class="heading1">
+            <span id="typing-text"></span><span class="cursor">|</span>
+        </h3>
+    </section>
+
+    <script>
+        const textArray = ["FRONT-END DEVELOPER", "BACK-END DEVELOPER","DESIGNER"];
+        let textIndex = 0, charIndex = 0;
+        const typingSpeed = 150, erasingSpeed = 100, delayBetweenTexts = 1000;
+        const typingTextElement = document.getElementById("typing-text");
+
+        function typeText() {
+            if (charIndex < textArray[textIndex].length) {
+                typingTextElement.innerHTML += textArray[textIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(typeText, typingSpeed);
+            } else {
+                setTimeout(eraseText, delayBetweenTexts);
+            }
+        }
+
+        function eraseText() {
+            if (charIndex > 0) {
+                typingTextElement.innerHTML = textArray[textIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(eraseText, erasingSpeed);
+            } else {
+                textIndex = (textIndex + 1) % textArray.length;
+                setTimeout(typeText, typingSpeed);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => setTimeout(typeText, typingSpeed));
+    </script>
+
+    <section id="about-section">
+        <div class="container py-5">
             <div class="row align-items-center">
-              
                 <div class="col-md-6 d-flex justify-content-center p-4">
-                    <img 
-                      src="sayand.jpg" 
-                      alt="Image not found" 
-                      class="img-fluid w-75 rounded shadow mt-5" 
-                      data-aos="zoom-in" 
-                      data-aos-duration="1200">
-                    
-                  </div>
-                  
-    
-                
+                  <img src="sayand.jpg" 
+                  alt="Sayand's Image" 
+                  class="img-fluid w-75 rounded shadow mt-5" 
+                  data-aos="zoom-in" 
+                  data-aos-duration="1200" 
+                  data-aos-once="true">
+             
+             
+                </div>
                 <div class="col-md-6 d-flex flex-column justify-content-center">
                     <h2 class="mb-3">Welcome to My Portfolio</h2>
                     <p class="text-muted">
@@ -71,112 +173,91 @@
                 </div>
             </div>
         </div>
-        <section class="bg-light p-5" id="skills">
-            <div class="container">
-             
+    </section>
 
-              <h1 class="text-center mb-5">SKILLS</h1>
-          
-              <div class="row justify-content-center g-4">
-                
+    <section class="bg-light p-5" id="skills">
+        <div class="container">
+            <h1 class="text-center mb-5">SKILLS</h1>
+            <div class="row justify-content-center g-4">
                 <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
-                  <div class="card shadow" style="width: 18rem;">
-                    <img src="front-end-programming.png" class="card-img-top img-fluid w-50 h-50 mx-auto d-block mt-3" alt="Backend Coding">
-                    <div class="card-body text-center">
-                      <h5 class="card-title">FRONT-END DEVELOPER</h5>
-                      <p class="card-text">
-                        I build responsive, user-friendly interfaces with HTML, CSS, JavaScript, and React, ensuring seamless experiences across all devices.
-                      </p>
+                    <div class="card shadow" style="width: 18rem;">
+                        <img src="front-end-programming.png" class="card-img-top img-fluid w-50 h-50 mx-auto d-block mt-3" alt="Frontend Coding">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">FRONT-END DEVELOPER</h5>
+                            <p class="card-text">
+                                I build responsive, user-friendly interfaces with HTML, CSS, JavaScript, and React, ensuring seamless experiences across all devices.
+                            </p>
+                        </div>
                     </div>
-                  </div>
                 </div>
-          
-               
                 <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
-                  <div class="card shadow" style="width: 18rem;">
-                    <img src="backend-coding.png" class="card-img-top img-fluid w-50 h-50 mx-auto d-block mt-3 " alt="Backend Coding">
-                    <div class="card-body text-center">
-                      <h5 class="card-title">BACKEND DEVELOPER</h5>
-                      <p class="card-text">
-                        I build secure, scalable back-end systems with SQL, Node.js, and Python, ensuring seamless data management and integration with front-end interfaces.
-
-                      </p>
+                    <div class="card shadow" style="width: 18rem;">
+                        <img src="backend-coding.png" class="card-img-top img-fluid w-50 h-50 mx-auto d-block mt-3" alt="Backend Coding">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">BACKEND DEVELOPER</h5>
+                            <p class="card-text">
+                                I build secure, scalable back-end systems with SQL, Node.js, and Python, ensuring seamless data management and integration with front-end interfaces.
+                            </p>
+                        </div>
                     </div>
-                  </div>
                 </div>
-          
                 <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
-                  <div class="card shadow" style="width: 18rem;">
-                    <img src="designnew.png.png" class="card-img-top img-fluid w-50 h-50 mx-auto d-block mt-3 m-5 " alt="Backend Coding">
-                    <div class="card-body text-center">
-                      <h5 class="card-title">DESIGNING</h5>
-                      <p class="card-text">
-                        I design responsive, user-friendly interfaces with intuitive navigation and modern aesthetics, enhancing user experience through clean and functional layouts.
-
-                      </p>
+                    <div class="card shadow" style="width: 18rem;">
+                        <img src="designnew.png.png" class="card-img-top img-fluid w-50 h-50 mx-auto d-block mt-3 m-5" alt="Designing">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">DESIGNING</h5>
+                            <p class="card-text">
+                                I design responsive, user-friendly interfaces with intuitive navigation and modern aesthetics, enhancing user experience through clean and functional layouts.
+                            </p>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-           <br>
-           <br>
-          </section>
-          
-    
-          <script>
-            AOS.init();
-          </script>
-          
-          <section class="contactform py-5">
-            <div class="container">
-              <div class="row justify-content-center">
+        </div>
+    </section>
+
+    <section class="contactform py-5" id="contact-info">
+        <div class="container">
+            <div class="row justify-content-center">
                 <div class="col-md-8 p-4 shadow rounded bg-white">
-                  <h2 class="text-center mb-4">Contact Form</h2>
-                  <form>
-                    <div class="row g-3">
-                      
-                      <div class="col-md-6">
-                        <label for="inputEmail4" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="inputEmail4" placeholder="Enter your Name">
-                      </div>
-          
-                   
-                      <div class="col-md-6">
-                        <label for="inputPassword4" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="inputPassword4" placeholder="Enter your mail id">
-                      </div>
-          
-                      <div class="col-12">
-                        <label for="inputAddress2" class="form-label">Phone number</label>
-                        <input type="tel" class="form-control" id="inputAddress2" placeholder="Enter your phoen number">
-                      </div>
-          
-                      
-                      <div class="col-md-6">
-                        <label for="inputCity" class="form-label">Message</label>
-                        <input type="text" class="form-control messageto" id="inputCity" placeholder="Enter any thing...">
-                      </div>
-          
-                      
-                      <div class="col-12 text-center mt-3">
-                        <button type="submit" class="btn btn-primary px-5">Submit</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </section>
-          <footer class="lastone">
-            <div class="container text-center col-md-12 ">
-                <div class="row">
-                    <p>copyright</p>
+                    <h2 class="text-center mb-4">Contact Form</h2>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" placeholder="Enter your Name">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" placeholder="Enter your mail id">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Phone number</label>
+                                <input type="tel" class="form-control" placeholder="Enter your phone number">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Message</label>
+                                <input type="text" class="form-control" placeholder="Enter anything...">
+                            </div>
+                            <div class="col-12 text-center mt-3">
+                                <button type="submit" class="btn btn-primary px-5">Submit</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-          </footer>
-          
-          
+        </div>
+    </section>
+
+    <footer class="text-center p-3 bg-light">
+      <a href="https://www.instagram.com/sayand__kk/"><img src="instagram.png" alt="error" style="height: 20px;"></a>
+      <p>&copy; 2025 Sayand KK. All Rights Reserved.</p>
+  </footer>
+
+    <script>
+        AOS.init();
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
